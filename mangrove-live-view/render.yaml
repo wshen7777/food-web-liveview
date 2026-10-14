@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: mangrove-live-view
-    runtime: node
-    rootDir: server
-    buildCommand: npm install
-    startCommand: npm start
-    healthCheckPath: /
-    plan: free
