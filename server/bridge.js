@@ -74,9 +74,10 @@ const { App } = globalThis.ExtApps;
         content: [
           {
             type: "text",
-            text:
-              `[LIVE VIEW COMPLETE] I finished the food chain quiz: ${summary.score}/${summary.total} ` +
-              `in ${summary.attempts} attempt${summary.attempts === 1 ? "" : "s"}.\n${chain}`,
+            // text:
+            //   `[LIVE VIEW COMPLETE] I finished the food chain quiz: ${summary.score}/${summary.total} ` +
+            //   `in ${summary.attempts} attempt${summary.attempts === 1 ? "" : "s"}.\n${chain}`,
+            text:""
           },
         ],
       });
