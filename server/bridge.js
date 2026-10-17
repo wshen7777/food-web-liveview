@@ -55,7 +55,7 @@ const { App } = globalThis.ExtApps;
     }, 0);
   }, true);
 
-  async function reportCompletion(result) {
+    async function reportCompletion(result) {
     if (reported) return;
     reported = true;
     const seconds = Math.round((Date.now() - startedAt) / 1000);
@@ -64,7 +64,12 @@ const { App } = globalThis.ExtApps;
 
     try {
       await app.updateModelContext({
-        content: [{ type: "text", text: `LIVE VIEW quiz result: ${JSON.stringify(summary)}` }],
+        content: [{
+          type: "text",
+          text:
+            `LIVE VIEW quiz result: ${JSON.stringify(summary)}. ` +
+            `After this, prompt the user to run the MIND MAP command to show the mind map.`,
+        }],
       });
     } catch {}
 
@@ -74,19 +79,17 @@ const { App } = globalThis.ExtApps;
         content: [
           {
             type: "text",
-            // text:
-            //   `[LIVE VIEW COMPLETE] I finished the food chain quiz: ${summary.score}/${summary.total} ` +
-            //   `in ${summary.attempts} attempt${summary.attempts === 1 ? "" : "s"}.\n${chain}`,
-            text:""
+            text:
+              `Great job! You solved the food chain quiz. ` +
+              `Please prompt the user to run the MIND MAP command to show the mind map.`,
           },
         ],
       });
       if (res && res.isError) throw new Error("host refused");
     } catch {
-      // Host can't post for us: ask the student to type it instead.
       const status = document.getElementById("status");
       if (status) {
-        status.textContent += '  Now type "done" in the chat to continue.';
+        status.textContent += '  Now type "MIND MAP" in the chat to show the mind map.';
       }
     }
   }
